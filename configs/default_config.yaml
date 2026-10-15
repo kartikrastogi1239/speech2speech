@@ -1,0 +1,68 @@
+# Default Configuration for Hindi-to-Spanish Translation System
+
+project:
+  name: "hindi_to_spanish_s2st"
+  seed: 42
+
+# Device and Acceleration Configuration
+system:
+  device: "auto"              # Options: "auto", "cuda", "mps", "cpu"
+  use_amp: true               # Mixed precision training (torch.amp)
+  amp_dtype: "float16"        # "float16" or "bfloat16" (bfloat16 recommended on modern GPUs/TPUs)
+  num_workers: 2              # DataLoader worker processes
+  pin_memory: true            # Pin memory for faster GPU transfer
+
+# Audio Frontend Configuration (Hindi Input)
+audio:
+  sample_rate: 16000
+  n_fft: 1024
+  hop_length: 256
+  win_length: 1024
+  n_mels: 80
+  f_min: 0.0
+  f_max: 8000.0
+  normalize: true
+
+# Text / Tokenizer Configuration
+text:
+  src_lang: "hi"              # Hindi
+  tgt_lang: "es"              # Spanish
+  src_vocab_size: 16000
+  tgt_vocab_size: 16000
+  pad_token_id: 0
+  bos_token_id: 1
+  eos_token_id: 2
+  unk_token_id: 3
+
+# Core Transformer Model Architecture (Implemented from scratch)
+model:
+  d_model: 256                # Embedding / model dimension (scalable for Colab GPU)
+  nhead: 8                    # Number of attention heads (d_model must be divisible by nhead)
+  num_encoder_layers: 4       # Encoder depth
+  num_decoder_layers: 4       # Decoder depth
+  dim_feedforward: 1024       # Dimension of feedforward network
+  dropout: 0.1
+  activation: "relu"          # "relu" or "gelu"
+  max_seq_length: 512         # Maximum sequence length supported by positional encoding
+  share_embeddings: false
+
+# Training Hyperparameters
+training:
+  batch_size: 32
+  accumulate_grad_batches: 2  # Gradient accumulation steps for effective larger batch sizes
+  learning_rate: 5.0e-4
+  warmup_steps: 4000
+  max_epochs: 30
+  label_smoothing: 0.1
+  clip_grad_norm: 1.0
+  weight_decay: 0.0001
+  save_every_n_epochs: 1
+  eval_every_n_epochs: 1
+  checkpoint_dir: "checkpoints"
+  log_dir: "logs"
+
+# Pretrained Audio Components (TTS / Vocoder for Spanish output)
+tts:
+  model_id: "facebook/mms-tts-spa"   # Meta MMS-TTS for Spanish speech synthesis
+  vocoder: "hifigan"
+  output_sample_rate: 16000

@@ -1,0 +1,48 @@
+# Python environment & cache
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Data and large files (never commit datasets or weights)
+data/
+datasets/
+checkpoints/
+models_saved/
+weights/
+*.pt
+*.pth
+*.bin
+*.onnx
+*.safetensors
+*.tar.gz
+*.zip
+
+# Audio cache & outputs
+outputs/
+generated_audio/
+*.wav
+*.mp3
+*.flac
+*.ogg
+
+# Logs & Wandb
+logs/
+wandb/
+runs/
+
+# IDE & OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Colab / Jupyter
+.ipynb_checkpoints/

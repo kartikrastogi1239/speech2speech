@@ -1,0 +1,25 @@
+# Core Deep Learning
+torch>=2.0.0
+torchaudio>=2.0.0
+
+# Audio Processing
+librosa>=0.10.0
+soundfile>=0.12.1
+scipy>=1.10.0
+
+# Text Tokenization & Pretrained NLP Components
+transformers>=4.30.0
+sentencepiece>=0.1.99
+datasets>=2.14.0
+
+# Configuration & Utilities
+pyyaml>=6.0
+tqdm>=4.65.0
+numpy>=1.23.0
+
+# Evaluation & Metrics
+sacrebleu>=2.3.0
+
+# Testing & Development
+pytest>=7.3.0
+pytest-cov>=4.1.0
